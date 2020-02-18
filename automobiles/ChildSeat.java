@@ -1,5 +1,5 @@
 package automobiles;
-class ChildSeat extends Decorator{
+public class ChildSeat extends Decorator{
     AbstractCar car;
     public ChildSeat(AbstractCar car){
         this.car = car;
@@ -7,5 +7,8 @@ class ChildSeat extends Decorator{
     public int getCost(){
         int cost = car.getCost() + 111;
         return cost;
+    }
+    public String getDescription(){
+        return car.getDescription() + " + Child seat";
     }
 }

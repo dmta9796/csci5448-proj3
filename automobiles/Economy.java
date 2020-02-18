@@ -1,10 +1,9 @@
 package automobiles;
-class Economy extends AbstractCar{
-    String description;
+public class Economy extends AbstractCar{
     public Economy(){
         description = "Economy car";
     }
-    int getCost(){
+    public int getCost(){
         int cost = 15000;
         return cost;
     }

@@ -1,4 +1,5 @@
 package automobiles;
-class Decorator extends AbstractCar{
-    
+public abstract class Decorator extends AbstractCar{
+    public abstract int getCost();
+    public abstract String getDescription();
 }

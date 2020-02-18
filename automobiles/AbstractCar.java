@@ -1,9 +1,12 @@
 package automobiles;
-abstract class AbstractCar{
+public abstract class AbstractCar{
+    String description;
     private String plate;
     private String extras;
-    abstract int getCost();
-    abstract int getDescription();
+    public abstract int getCost();
+    public String getDescription(){
+        return description;
+    }
 
 
 }

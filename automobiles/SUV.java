@@ -1,10 +1,9 @@
 package automobiles;
-class SUV extends AbstractCar{
-    String description;
+public class SUV extends AbstractCar{
     public SUV(){
         description = "SUV car";
     }
-    int getCost(){
+    public int getCost(){
         int cost = 22000;
         return cost;
     }
