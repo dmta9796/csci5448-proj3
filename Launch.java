@@ -31,5 +31,7 @@ public class Launch{
         test = car.getDescription();
         price = car.getCost();
         System.out.println(test+":"+price);
+        Ledger ledger = new Ledger();
+        ledger.PrintActivity();
     }
 }
