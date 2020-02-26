@@ -1,9 +1,9 @@
 package users;
-public class Business extends User{
-    public Business(){
-        super();
+public class Business implements BuyBehavior{
+    public void buy(){
+
     }
-    public Business(String name){
-        super(name);
+    public String type(){
+        return "Business";
     }
 }

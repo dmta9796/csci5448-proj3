@@ -1,10 +1,10 @@
 package users;
-public class Regular extends User{
-    public Regular(){
-        super();
+public class Regular implements BuyBehavior{
+    public void buy(){
+
     }
-    public Regular(String name){
-        super(name);
+    public String type(){
+        return "Regular";
     }
 
 }

@@ -1,9 +1,9 @@
 package users;
-public class Casual extends User{
-    public Casual(){
-        super();
+public class Casual implements BuyBehavior{
+    public void buy(){
+
     }
-    public Casual(String name){
-        super(name);
+    public String type(){
+        return "Casual";
     }
 }
