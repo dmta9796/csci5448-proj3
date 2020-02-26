@@ -5,6 +5,7 @@ public abstract class RentalBusiness {
     protected abstract AbstractCar createCar(String type);
     protected abstract void licenseCar(AbstractCar car);
     private int inventorySize;
+    private int numberOfCarClasses;
     List<AbstractCar> inventory;
 
     public RentalBusiness(int _inventorySize){
