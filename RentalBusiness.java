@@ -8,6 +8,8 @@ public abstract class RentalBusiness {
     private int numberOfCarClasses;
     List<AbstractCar> inventory;
 
+    public List<AbstractCar> getInventory(){return inventory;};
+
     public RentalBusiness(int _inventorySize){
         inventorySize = _inventorySize;
         inventory = new ArrayList<AbstractCar>();
