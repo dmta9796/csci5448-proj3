@@ -10,11 +10,6 @@ public abstract class RentalBusiness {
     public RentalBusiness(int _inventorySize){
         inventorySize = _inventorySize;
         inventory = new ArrayList<AbstractCar>();
-    }
-
-    public RentalBusiness(int _inventorySize){
-        inventorySize = _inventorySize;
-        inventory = new ArrayList<AbstractCar>();
         numberOfCarClasses = 5;
     }
 
