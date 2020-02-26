@@ -5,6 +5,8 @@ import java.util.List;
 
 public class Ledger {
     private int dayNumber;
+    private int moneyMadeToday;
+    private int moneyMade;
     private List<AbstractCar> inventory;
     private List<User> usersRentedToday;
     private List<User> usersRentedCurrently;
@@ -15,6 +17,7 @@ public class Ledger {
         inventory = allCars;
         usersRentedToday = null;
         usersRentedCurrently = null;
+        moneyMade = moneyMadeToday = 0;
     }
 
     public void PrintActivity(){
@@ -43,6 +46,9 @@ public class Ledger {
         }else{
             System.out.println("None");
         }
+
+        System.out.println("The store made " + moneyMadeToday + " today");
+        dayNumber = dayNumber + 1;
 
 
     }
