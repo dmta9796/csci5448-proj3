@@ -7,6 +7,9 @@ public abstract class AbstractCar{
     public String getDescription(){
         return description;
     }
+    public String getPlate(){
+        return plate;
+    }
 
 
 }
