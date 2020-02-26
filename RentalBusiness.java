@@ -12,20 +12,28 @@ public abstract class RentalBusiness {
         inventory = new ArrayList<AbstractCar>();
     }
 
+    public RentalBusiness(int _inventorySize){
+        inventorySize = _inventorySize;
+        inventory = new ArrayList<AbstractCar>();
+        numberOfCarClasses = 5;
+    }
+
     public void buildInventory(){
-        for(int i = 0; i < 5; i++){
+        int leftOverCars = inventorySize % numberOfCarClasses;
+        int generalNumberOfCars = (inventorySize-leftOverCars) / (numberOfCarClasses-1);
+        for(int i = 0; i < generalNumberOfCars; i++){
             inventory.add(orderCar("Economy"));
         }
-        for(int i = 0; i < 5; i++){
+        for(int i = 0; i < generalNumberOfCars; i++){
             inventory.add(orderCar("Standard"));
         }
-        for(int i = 0; i < 5; i++){
+        for(int i = 0; i < generalNumberOfCars; i++){
             inventory.add(orderCar("Luxury"));
         }
-        for(int i = 0; i < 5; i++){
+        for(int i = 0; i < generalNumberOfCars; i++){
             inventory.add(orderCar("SUV"));
         }
-        for(int i = 0; i < 4; i++){
+        for(int i = 0; i < leftOverCars; i++){
             inventory.add(orderCar("Minivan"));
         }
     }
