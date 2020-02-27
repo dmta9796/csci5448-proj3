@@ -1,12 +1,15 @@
 import automobiles.AbstractCar;
 import users.User;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Ledger {
     private int dayNumber;
     private int moneyMadeToday;
     private int moneyMade;
+    private int carsRentedToday;
+    private int carsRented;
     private List<AbstractCar> inventory;
     private List<User> usersRentedToday;
     private List<User> usersRentedCurrently;
@@ -15,17 +18,31 @@ public class Ledger {
     Ledger(List<AbstractCar> allCars){
         dayNumber = 1;
         inventory = allCars;
-        usersRentedToday = null;
-        usersRentedCurrently = null;
-        moneyMade = moneyMadeToday = 0;
+        usersRentedToday = new ArrayList<User>();
+        usersRentedCurrently = new ArrayList<User>();
+        moneyMade = moneyMadeToday = carsRentedToday = carsRented = 0;
+
+        User will = new User("Will" , null);
+        will.setCurRentedCars(allCars);
+        usersRentedToday.add(will);
+
+
+
+
+
     }
 
     public void PrintActivity(){
         System.out.println("Today's day number is: " + dayNumber);
         System.out.println("Rentals Done today");
-        if(usersRentedToday!= null){
+        if(usersRentedToday != null){
+            System.out.println(carsRentedToday + " cars rented today");
             for(int i = 0; i < usersRentedToday.size();i++){
-                System.out.println("Rentals today");
+                List<AbstractCar> curUserCarsRented = usersRentedToday.get(i).getCurRented();
+                System.out.println(usersRentedToday.get(i).getname() + " has rented the following car/s");
+                for(int j = 0; j < curUserCarsRented.size();j++){
+                    System.out.println(curUserCarsRented.get(j).getDescription() + " with license plate " + curUserCarsRented.get(j).getPlate());
+                }
             }
         }else{
             System.out.println("None");
@@ -33,7 +50,11 @@ public class Ledger {
         System.out.println("Rentals currently active");
         if(usersRentedCurrently!= null){
             for(int i = 0; i < usersRentedCurrently.size();i++){
-                System.out.println("Rentals Currently");
+                List<AbstractCar> curUserCarsRented = usersRentedToday.get(i).getCurRented();
+                System.out.println(usersRentedToday.get(i).getname() + " has rented the following car/s");
+                for(int j = 0; j < curUserCarsRented.size();j++){
+                    System.out.println(curUserCarsRented.get(j).getDescription() + " with license plate " + curUserCarsRented.get(j).getPlate());
+                }
             }
         }else{
             System.out.println("None");
