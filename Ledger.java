@@ -41,11 +41,37 @@ public class Ledger implements Observer {
         }
         return false;
     }
+    public void addUserToActiveRentals(User user){
+        if(!checkIfUserInList(user, usersRentedCurrently)){
+            usersRentedCurrently.add(user);
+        }
+    }
+    public void removeFromInventory(AbstractCar car){
+        inventory.remove(car);
+    }
+    public void addCarAndUserToCompleted(AbstractCar car, User user){
+        usersCompletedRentalToday.add(user);
+        carsCompletedToday.add(car);
+
+    }
+
+    public void addCarBackToInventory(AbstractCar car){
+        inventory.add(car);
+    }
+    public void checkUserStillHasRental(User user){
+        if(user.getCurRented().size() == 0){
+            usersRentedCurrently.remove(user);
+        }
+    }
+
     public void update(boolean newRental, AbstractCar theCar, User theUser) {
         if(newRental){
-            System.out.println("car added to " + theUser.getname());
+            addUserToActiveRentals(theUser);
+            removeFromInventory(theCar);
         }else{
-            System.out.println("car removed " + theUser.getname());
+            addCarAndUserToCompleted(theCar,theUser);
+            addCarBackToInventory(theCar);
+            checkUserStillHasRental(theUser);
         }
     }
 
