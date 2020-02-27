@@ -1,5 +1,5 @@
 import automobiles.*;
-
+import users.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ListIterator;
@@ -31,7 +31,13 @@ public class Launch{
         test = car.getDescription();
         price = car.getCost();
         System.out.println(test+":"+price);
+        User will = new User("Will" , null);
+        System.out.println("a");
         Ledger ledger = new Ledger(rentalBusiness.getInventory());
+        System.out.println("b");
+        will.registerObserver(ledger);
+        System.out.println("c");
+        will.addOneCar(car);
         ledger.PrintActivity();
     }
 }
