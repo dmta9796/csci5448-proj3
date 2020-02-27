@@ -8,10 +8,11 @@ public class Ledger {
     private int dayNumber;
     private int moneyMadeToday;
     private int moneyMade;
-    private int carsRentedToday;
-    private int carsRented;
+    private int countOfCarsRentedToday;
+    private int countCarsRented;
     private List<AbstractCar> inventory;
     private List<User> usersRentedToday;
+    private List<AbstractCar> carsRentedToday;
     private List<User> usersRentedCurrently;
 
 
@@ -20,15 +21,7 @@ public class Ledger {
         inventory = allCars;
         usersRentedToday = new ArrayList<User>();
         usersRentedCurrently = new ArrayList<User>();
-        moneyMade = moneyMadeToday = carsRentedToday = carsRented = 0;
-
-        User will = new User("Will" , null);
-        will.setCurRentedCars(allCars);
-        usersRentedToday.add(will);
-
-
-
-
+        moneyMade = moneyMadeToday = countOfCarsRentedToday = countCarsRented = 0;
 
     }
 
@@ -36,7 +29,8 @@ public class Ledger {
         System.out.println("Today's day number is: " + dayNumber);
         System.out.println("Rentals Done today");
         if(usersRentedToday != null){
-            System.out.println(carsRentedToday + " cars rented today");
+            //need to check to see if a car was rented today for the users
+            System.out.println(countCarsRented + " cars rented today");
             for(int i = 0; i < usersRentedToday.size();i++){
                 List<AbstractCar> curUserCarsRented = usersRentedToday.get(i).getCurRented();
                 System.out.println(usersRentedToday.get(i).getname() + " has rented the following car/s");

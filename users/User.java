@@ -22,6 +22,20 @@ public class User{
     }
 
     public List<AbstractCar> getCurRented(){return curRentedCars;};
-    public void setCurRentedCars( List<AbstractCar> newRental){curRentedCars = newRental;};
+
+    public void addManyCars( List<AbstractCar> newRentals){
+        for(int i = 0; i < newRentals.size();i++) {
+            curRentedCars.add(newRentals.get(i));
+        }
+    };
+
+    public void addOneCar(AbstractCar newRental){curRentedCars.add(newRental);};
+    public void returnCar(AbstractCar carToReturn){curRentedCars.remove(carToReturn);};
+
+    public void returnMultipleCars( List<AbstractCar> newRentals){
+        for(int i = 0; i < newRentals.size();i++) {
+            curRentedCars.remove(newRentals.get(i));
+        }
+    };
 
 }
