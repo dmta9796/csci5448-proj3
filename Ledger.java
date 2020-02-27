@@ -22,6 +22,7 @@ public class Ledger implements Observer {
         inventory = allCars;
         usersCompletedRentalToday = new ArrayList<User>();
         usersRentedCurrently = new ArrayList<User>();
+        carsCompletedToday = new ArrayList<AbstractCar>();
         moneyMade = moneyMadeToday = countOfCarsRentedToday = countCarsRented = 0;
 
     }
@@ -72,6 +73,7 @@ public class Ledger implements Observer {
             addCarAndUserToCompleted(theCar,theUser);
             addCarBackToInventory(theCar);
             checkUserStillHasRental(theUser);
+            countOfCarsRentedToday = countOfCarsRentedToday+1;
         }
     }
 
@@ -86,7 +88,9 @@ public class Ledger implements Observer {
         cleanDayActivities();
     }
     public void cleanDayActivities(){
-
+        carsCompletedToday.clear();
+        usersCompletedRentalToday.clear();
+        countOfCarsRentedToday = 0;
     }
     public void printInventory(){
         System.out.println("Cars in inventory");
@@ -105,10 +109,9 @@ public class Ledger implements Observer {
             System.out.println(countCarsRented + " cars rented today");
             for(int i = 0; i < usersCompletedRentalToday.size();i++){
                 List<AbstractCar> curUserCarsRented = usersCompletedRentalToday.get(i).getCurRented();
-                System.out.println(usersCompletedRentalToday.get(i).getname() + " has rented the following car/s");
-                for(int j = 0; j < curUserCarsRented.size();j++){
-                    System.out.println(curUserCarsRented.get(j).getDescription() + " with license plate " + curUserCarsRented.get(j).getPlate());
-                }
+                System.out.println(usersCompletedRentalToday.get(i).getname() + " has rented the following car");
+                System.out.println(curUserCarsRented.get(i).getDescription() + " with license plate " + curUserCarsRented.get(i).getPlate());
+
             }
         }else{
             System.out.println("None");

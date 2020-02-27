@@ -28,6 +28,7 @@ public class Launch{
         car = new Economy();
         car = new GPS(car);
         car = new ChildSeat(car);
+        car.plate = "LUX246";
         test = car.getDescription();
         price = car.getCost();
         System.out.println(test+":"+price);
