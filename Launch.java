@@ -38,7 +38,10 @@ public class Launch{
         System.out.println("b");
         will.registerObserver(ledger);
         System.out.println("c");
-        will.addOneCar(car);
+        will.addOneCar(car,2);
         ledger.PrintActivity();
+        ledger.PrintActivity();
+        ledger.PrintActivity();
+
     }
 }

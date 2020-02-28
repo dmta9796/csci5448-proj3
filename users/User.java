@@ -8,6 +8,7 @@ public class User implements Subject{
     private String name = "";
     private BuyBehavior clienttype;
     private List<AbstractCar> curRentedCars;
+
     ArrayList<Observer> observerList;
     public User(){
         this.clienttype = new Casual();
@@ -17,6 +18,7 @@ public class User implements Subject{
         this.clienttype = type;
         curRentedCars = new ArrayList<AbstractCar>();
         observerList = new ArrayList<Observer>();
+
     }
     public String getname(){
         return this.name;
@@ -27,29 +29,21 @@ public class User implements Subject{
 
     public List<AbstractCar> getCurRented(){return curRentedCars;};
 
-    public void addManyCars( List<AbstractCar> newRentals){
-        for(int i = 0; i < newRentals.size();i++) {
-            curRentedCars.add(newRentals.get(i));
-            notifyObservers(true,newRentals.get(i));
-        }
-    };
 
-    public void addOneCar(AbstractCar newRental){
+    public void addOneCar(AbstractCar newRental, int daysOfRental){
+        newRental.setDaysToBeRented(daysOfRental);
         curRentedCars.add(newRental);
         notifyObservers(true,newRental);
+
     };
     public void returnCar(AbstractCar carToReturn){
+
         curRentedCars.remove(carToReturn);
         notifyObservers(false,carToReturn);
 
     };
 
-    public void returnMultipleCars( List<AbstractCar> returns){
-        for(int i = 0; i < returns.size();i++) {
-            curRentedCars.remove(returns.get(i));
-            notifyObservers(false,returns.get(i));
-        }
-    };
+
 
 
     //observer override
