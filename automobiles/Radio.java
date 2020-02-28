@@ -4,9 +4,9 @@ public class Radio extends Decorator{
     public Radio(AbstractCar car){
         this.car = car;
     }
+    public String getPlate(){ return car.getPlate(); }
     public int getCost(){
-        int cost = car.getCost() + 555;
-        return cost;
+        return car.getCost() + 555;
     }
     public String getDescription(){
         return car.getDescription() + " + Radio";

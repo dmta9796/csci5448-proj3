@@ -6,13 +6,15 @@ public abstract class RentalBusiness {
     protected abstract void licenseCar(AbstractCar car);
     private int inventorySize;
     private int numberOfCarClasses;
-    List<AbstractCar> inventory;
+    private List<AbstractCar> inventory;
+    protected List<String> licenses;
 
     public List<AbstractCar> getInventory(){return inventory;};
 
     public RentalBusiness(int _inventorySize){
         inventorySize = _inventorySize;
         inventory = new ArrayList<AbstractCar>();
+        licenses = new ArrayList<String>();
         numberOfCarClasses = 5;
     }
 

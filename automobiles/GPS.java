@@ -4,6 +4,7 @@ public class GPS extends Decorator{
     public GPS(AbstractCar car){
         this.car = car;
     }
+    public String getPlate(){ return car.getPlate(); }
     public int getCost(){
         int cost = car.getCost() + 1000;
         return cost;

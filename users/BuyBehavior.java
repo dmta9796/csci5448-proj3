@@ -1,6 +1,8 @@
 package users;
 
+import java.util.List;
+
 public interface BuyBehavior {
-    abstract void buy();
+    abstract List<RentRequest> createRentReq();
     abstract String type();
 }

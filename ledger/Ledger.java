@@ -1,3 +1,5 @@
+package ledger;
+
 import automobiles.AbstractCar;
 import users.User;
 
@@ -15,16 +17,13 @@ public class Ledger {
     private List<User> usersRentedCurrently;
 
 
-    Ledger(List<AbstractCar> allCars){
+    public Ledger(List<AbstractCar> allCars){
         dayNumber = 1;
         inventory = allCars;
         usersRentedToday = new ArrayList<User>();
         usersRentedCurrently = new ArrayList<User>();
         moneyMade = moneyMadeToday = carsRentedToday = carsRented = 0;
 
-        User will = new User("Will" , null);
-        will.setCurRentedCars(allCars);
-        usersRentedToday.add(will);
 
 
 
@@ -39,7 +38,7 @@ public class Ledger {
             System.out.println(carsRentedToday + " cars rented today");
             for(int i = 0; i < usersRentedToday.size();i++){
                 List<AbstractCar> curUserCarsRented = usersRentedToday.get(i).getCurRented();
-                System.out.println(usersRentedToday.get(i).getname() + " has rented the following car/s");
+                System.out.println(usersRentedToday.get(i).getName() + " has rented the following car/s");
                 for(int j = 0; j < curUserCarsRented.size();j++){
                     System.out.println(curUserCarsRented.get(j).getDescription() + " with license plate " + curUserCarsRented.get(j).getPlate());
                 }
@@ -51,7 +50,7 @@ public class Ledger {
         if(usersRentedCurrently!= null){
             for(int i = 0; i < usersRentedCurrently.size();i++){
                 List<AbstractCar> curUserCarsRented = usersRentedToday.get(i).getCurRented();
-                System.out.println(usersRentedToday.get(i).getname() + " has rented the following car/s");
+                System.out.println(usersRentedToday.get(i).getName() + " has rented the following car/s");
                 for(int j = 0; j < curUserCarsRented.size();j++){
                     System.out.println(curUserCarsRented.get(j).getDescription() + " with license plate " + curUserCarsRented.get(j).getPlate());
                 }

@@ -1,7 +1,7 @@
 package automobiles;
 public abstract class AbstractCar{
     String description;
-    public String plate;
+    String plate;
     private String extras;
     public abstract int getCost();
     public String getDescription(){
@@ -10,6 +10,7 @@ public abstract class AbstractCar{
     public String getPlate(){
         return plate;
     }
+    public void setPlate(String _plate) { plate = _plate; }
 
 
 }
