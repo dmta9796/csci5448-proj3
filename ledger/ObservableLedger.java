@@ -52,10 +52,10 @@ public class ObservableLedger implements Observable{
     public void startDay(){
         returnRentals();
         dayNumber ++;
+        this.changed = true;
         notifyObservers();
         this.changed = false;
         updateRentals();
-        this.changed = true;
         moneyMadeToday = 0;
     }
 
