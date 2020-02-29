@@ -11,24 +11,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ObservableLedger implements Observable{
-    public int dayNumber;
+    private int dayNumber;
     private int moneyMadeToday;
     private int moneyMade;
-    private int carsRentedToday;
-    private int carsRented;
-    public List<AbstractCar> inventory;
-    public List<User> usersRentedToday;
-    public List<User> usersRentedCurrently;
+    private List<RentRecord> completedRentals;
+    private List<AbstractCar> inventory;
+    private List<RentRecord> rentalRecords;
     private List<Observer> observers;
     private boolean changed;
 
     public ObservableLedger(List<AbstractCar> allCars){
         observers = new ArrayList<Observer>();
-        dayNumber = 1;
+        dayNumber = 0;
         inventory = allCars;
-        usersRentedToday = new ArrayList<User>();
-        usersRentedCurrently = new ArrayList<User>();
-        moneyMade = moneyMadeToday = carsRentedToday = carsRented = 0;
+        rentalRecords = new ArrayList<RentRecord>();
+        moneyMade = moneyMadeToday = 0;
     }
     public void registerObs(Observer obs){
         if(observers.contains(obs)){
@@ -52,23 +49,24 @@ public class ObservableLedger implements Observable{
         }
     }
 
+    public void startDay(){
+        returnRentals();
+        dayNumber ++;
+        notifyObservers();
+        this.changed = false;
+        updateRentals();
+        this.changed = true;
+        moneyMadeToday = 0;
+    }
+
     public void finishDay(){
         moneyMade += moneyMadeToday;
-        carsRented += carsRentedToday;
-        this.changed = true;
-        notifyObservers();
-
-        usersRentedToday.clear();
-        moneyMadeToday = 0;
-        carsRentedToday = 0;
-        dayNumber ++;
     }
 
     public List<AbstractCar> processRentRequest(User customer, List<RentRequest> rentRequests){
         AbstractCar baseCar;
         AbstractCar decoratedCar;
-        String test;
-        int price;
+        RentRecord record;
         List<AbstractCar> carsRented = new ArrayList<AbstractCar>();
         for(RentRequest req : rentRequests){
             if(inventory.size() > 0){
@@ -79,19 +77,56 @@ public class ObservableLedger implements Observable{
                 if(req.gps){decoratedCar = new GPS(decoratedCar);}
                 if(req.satRadio){decoratedCar = new Radio(decoratedCar);}
 
-                if(!usersRentedToday.contains(customer)){
-                    usersRentedToday.add(customer);
-                }
-                if(!usersRentedCurrently.contains(customer)){
-                    usersRentedCurrently.add(customer);
-                }
+                record = new RentRecord(customer, baseCar, decoratedCar, req.duration);
+                rentalRecords.add(record);
                 carsRented.add(decoratedCar);
                 customer.addCurRentedCars(decoratedCar);
+                customer.addCar();
 
                 inventory.remove(baseCar);
+                moneyMadeToday += decoratedCar.getCost();
             }
         }
         return carsRented;
+    }
+
+    public void updateRentals(){
+        for(RentRecord rec : rentalRecords){
+            if(rec.duration > 0){
+                rec.duration --;
+            }
+        }
+    }
+
+    public void returnRentals(){
+        for(RentRecord rec : rentalRecords){
+            if(rec.duration == 0 && !rec.returned){
+                rec.returnCar();
+                rec.user.returnCar();
+                if(!inventory.contains(rec.car)){
+                    inventory.add(rec.car);
+                }
+            }
+        }
+    }
+
+    public List<RentRecord> getRentalRecords(){
+        return rentalRecords;
+    }
+
+    public List<AbstractCar> getInventory(){
+        return inventory;
+    }
+
+    public int getDayNumber(){
+        return dayNumber;
+    }
+
+    public int getMoneyMadeToday(){
+        return moneyMadeToday;
+    }
+    public int getMoneyMade(){
+        return moneyMade;
     }
 
 }

@@ -4,18 +4,23 @@ import java.util.List;
 import automobiles.AbstractCar;
 
 public class User{
-    private String name = "";
+    protected String name = "";
     private BuyBehavior buyBehavior;
     private List<AbstractCar> curRentedCars;
-    public User(String name, BuyBehavior type){
-        this.name = name;
-        this.buyBehavior = type;
+    private int numRentals;
+    public User(String _name, BuyBehavior type){
+        name = _name;
+        buyBehavior = type;
         curRentedCars = new ArrayList<AbstractCar>();
+        numRentals = 0;
     }
     public String getName(){
-        return this.name;
+        return name;
     }
     public String getType() { return buyBehavior.type(); }
+    public int getNumCars() { return numRentals; }
+    public void addCar() { numRentals++; }
+    public void returnCar() { numRentals--; }
 
     public void setName(String name){
         this.name = name;

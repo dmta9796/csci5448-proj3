@@ -9,12 +9,13 @@ public class RentRequest {
     public boolean carSeats;
     public boolean gps;
     public boolean satRadio;
-    public int nights;
+    public int duration;
 
-    public RentRequest(int _nights, boolean _carSeats, boolean _gps, boolean _satRadio){
+    public RentRequest(int _duration, boolean _carSeats, boolean _gps, boolean _satRadio){
         carSeats = _carSeats;
         gps = _gps;
         satRadio = _satRadio;
-        nights = _nights;
+        duration = _duration;
     }
 }
+

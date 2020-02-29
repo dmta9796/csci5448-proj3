@@ -9,20 +9,23 @@ public class LedgerObserver implements Observer{
         this.ledger = obj;
     }
     public void update(){
-        System.out.println("\n" + "Recap of day " + this.ledger.dayNumber + ":" + "\n");
-        for(User user : this.ledger.usersRentedToday){
-            System.out.println(user.getName());
-        }
-        System.out.println("Complete Record of Active Rentals:");
-        for(User user : this.ledger.usersRentedCurrently){
-            System.out.println("\t" + user.getName() + " has rented:");
-            for(AbstractCar car : user.getCurRented()){
-                System.out.println("\t\t" + car.getDescription() + ", License: " + car.getPlate());
+        System.out.println("\n" + "Day " + this.ledger.getDayNumber() + ":");
+        System.out.println("The Store Made $" + this.ledger.getMoneyMadeToday() +  " Yesterday" + "\n");
+        System.out.println("Record of Complete Rentals:");
+        for(RentRecord rec : this.ledger.getRentalRecords()){
+            if(rec.returned){
+                System.out.println("\t\t" + rec.user.getName() + "\t\t" + rec.car.getDescription() + "\t\t" + rec.totalDuration + " Days" + "\t\t" + "$" + rec.car.getCost());
             }
         }
-        System.out.println(this.ledger.inventory.size() + " Vehicles Left In Inventory: ");
-        for(AbstractCar car : this.ledger.inventory){
-            System.out.println("\t" + car.getDescription() + " " + car.getPlate());
+        System.out.println("Record of Active Rentals:");
+        for(RentRecord rec : this.ledger.getRentalRecords()){
+            if(!rec.returned){
+                System.out.println("\t\t" + rec.user.getName() + "\t\t" + rec.car.getDescription() + "\t\t" + rec.car.getPlate() + "\t\t" + "Due in " + rec.duration + " Days");
+            }
+        }
+        System.out.println(this.ledger.getInventory().size() + " Vehicles Left In Inventory: ");
+        for(AbstractCar car : this.ledger.getInventory()){
+            System.out.println("\t\t" + car.getDescription() + " " + car.getPlate());
         }
     }
 }
