@@ -150,7 +150,7 @@ public class Ledger implements Observer {
                 System.out.println(usersRentedCurrently.get(i).getname() + " has rented the following car/s");
                 for(int j = 0; j < curUserCarsRented.size();j++){
                     System.out.println(curUserCarsRented.get(j).getDescription() + " with license plate " + curUserCarsRented.get(j).getPlate()
-                            + " with " + curUserCarsRented.get(i).getLeftInRental() + " days remaining");
+                            + " with " + curUserCarsRented.get(j).getLeftInRental() + " days remaining");
 
                 }
             }

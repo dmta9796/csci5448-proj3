@@ -11,6 +11,7 @@ public abstract class AbstractCar{
     public String getPlate(){
         return plate;
     }
+    public void setPlate(String _plate) { plate = _plate; }
     public int getLeftInRental(){
         return daysToBeRented;
     }

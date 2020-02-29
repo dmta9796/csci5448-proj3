@@ -1,4 +1,5 @@
 import automobiles.*;
+import java.util.Random;
 
 public class RentalBusinessOne extends RentalBusiness{
 
@@ -25,7 +26,26 @@ public class RentalBusinessOne extends RentalBusiness{
     }
 
     protected void licenseCar(AbstractCar car){
-        //will make this randomized without replacement
-        car.plate = "LUX246";
+        String license = "";
+        //https://stackoverflow.com/questions/2626835/is-there-functionality-to-generate-a-random-character-in-java
+        for(int i=0;i<3;i++){
+            Random r = new Random();
+            char c = (char)(r.nextInt(26) + 'a');
+            license += c;
+        }
+        for(int i=0;i<3;i++){
+            Random r = new Random();
+            int n = (r.nextInt(9));
+            license += Integer.toString(n);
+        }
+        //make sure license isn't already in use
+        if(!licenses.contains(license)){
+            licenses.add(license);
+            car.setPlate(license);
+        } else{
+            licenseCar(car);
+        }
     }
+
+
 }

@@ -6,27 +6,27 @@ import java.util.Iterator;
 
 public class User implements Subject{
     private String name = "";
-    private BuyBehavior clienttype;
+    private BuyBehavior buyBehavior;
     private List<AbstractCar> curRentedCars;
 
     ArrayList<Observer> observerList;
     public User(){
-        this.clienttype = new Casual();
+        this.buyBehavior = new Casual();
     }
     public User(String name, BuyBehavior type){
         this.name = name;
-        this.clienttype = type;
+        this.buyBehavior = type;
         curRentedCars = new ArrayList<AbstractCar>();
         observerList = new ArrayList<Observer>();
 
     }
     public String getname(){
         return this.name;
-    }
+    };
     public void setname(String name){
         this.name = name;
-    }
-
+    };
+    public String getType() { return buyBehavior.type(); }
     public List<AbstractCar> getCurRented(){return curRentedCars;};
 
 
@@ -63,6 +63,9 @@ public class User implements Subject{
             Observer o = it.next();
             o.update(newRental, car, this);
         }
+    }
+    public List<RentRequest> rentCarReq(){
+        return buyBehavior.createRentReq();
     }
 
 

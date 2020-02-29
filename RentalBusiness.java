@@ -7,6 +7,7 @@ public abstract class RentalBusiness {
     private int inventorySize;
     private int numberOfCarClasses;
     List<AbstractCar> inventory;
+    protected List<String> licenses;
 
     public List<AbstractCar> getInventory(){return inventory;};
 
@@ -14,6 +15,8 @@ public abstract class RentalBusiness {
         inventorySize = _inventorySize;
         inventory = new ArrayList<AbstractCar>();
         numberOfCarClasses = 5;
+        licenses = new ArrayList<String>();
+
     }
 
     public void buildInventory(){
