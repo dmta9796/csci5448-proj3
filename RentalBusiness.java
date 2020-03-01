@@ -18,30 +18,24 @@ public abstract class RentalBusiness {
         numberOfCarClasses = 5;
     }
 
-    public void buildInventory(){
+    public void buildInventory() {
         int leftOverCars = inventorySize % numberOfCarClasses;
-        int generalNumberOfCars = (inventorySize-leftOverCars) / (numberOfCarClasses-1);
-        for(int i = 0; i < generalNumberOfCars; i++){
-            inventory.add(orderCar("Economy"));
+        int generalNumberOfCars = (inventorySize - leftOverCars) / (numberOfCarClasses - 1);
+        for (int i = 0; i < generalNumberOfCars; i++) {
+            inventory.add(createCar("Economy"));
         }
-        for(int i = 0; i < generalNumberOfCars; i++){
-            inventory.add(orderCar("Standard"));
+        for (int i = 0; i < generalNumberOfCars; i++) {
+            inventory.add(createCar("Standard"));
         }
-        for(int i = 0; i < generalNumberOfCars; i++){
-            inventory.add(orderCar("Luxury"));
+        for (int i = 0; i < generalNumberOfCars; i++) {
+            inventory.add(createCar("Luxury"));
         }
-        for(int i = 0; i < generalNumberOfCars; i++){
-            inventory.add(orderCar("SUV"));
+        for (int i = 0; i < generalNumberOfCars; i++) {
+            inventory.add(createCar("SUV"));
         }
-        for(int i = 0; i < leftOverCars; i++){
-            inventory.add(orderCar("Minivan"));
+        for (int i = 0; i < leftOverCars; i++) {
+            inventory.add(createCar("Minivan"));
         }
-    }
-
-    public AbstractCar orderCar(String type){
-        AbstractCar car = createCar(type);
-        licenseCar(car);
-        return car;
     }
 
 }

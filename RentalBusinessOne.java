@@ -9,21 +9,26 @@ public class RentalBusinessOne extends RentalBusiness{
     }
 
     protected AbstractCar createCar(String type){
-        if(type.equals("Economy")){
-            return new Economy();
+        AbstractCar car;
+        switch (type) {
+            case "Economy":
+                car = new Economy();
+                break;
+            case "Standard":
+                car = new Standard();
+                break;
+            case "Luxury":
+                car = new Luxury();
+                break;
+            case "SUV":
+                car = new SUV();
+                break;
+            default:
+                car = new Minivan();
+                break;
         }
-        if(type.equals("Standard")){
-            return new Standard();
-        }
-        if(type.equals("Luxury")){
-            return new Luxury();
-        }
-        if(type.equals("SUV")){
-            return new SUV();
-        }
-        else{
-            return new Minivan();
-        }
+        licenseCar(car);
+        return car;
     }
 
     protected void licenseCar(AbstractCar car){

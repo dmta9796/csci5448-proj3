@@ -6,8 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ListIterator;
 import java.util.Random;
+import java.lang.System;
 
-//import java.lang.System;
 public class Launch{
     public static AbstractCar car;
     public static String test;
@@ -35,15 +35,12 @@ public class Launch{
             }
         }
 
-        Ledger ledger = new Ledger(rentalBusiness.getInventory());
-        //ledger.PrintActivity();
-
-        //observer
+        //Observers and observable object creation. The observable ledger is responsable for all accounting and records
         ObservableLedger obsLedger = new ObservableLedger(rentalBusiness.getInventory());
         Observer obs = new LedgerObserver(obsLedger);
         obsLedger.registerObs(obs);
 
-        //Using strategy to create regular customers
+        //Using strategy to create regular customers rental behaviors
         BuyBehavior casualBehavior = new Casual();
         BuyBehavior regularBehavior = new Regular();
         BuyBehavior businessBehavior = new Business();
@@ -60,12 +57,13 @@ public class Launch{
         regularCustomers.add(new User("Schmidt", businessBehavior));
         regularCustomers.add(new User("Winston", businessBehavior));
 
+        //simulation execution
         simDays = 35;
         for(int i=0;i<simDays;i++){
             obsLedger.startDay();
             inventorySize = rentalBusiness.getInventory().size();
             if(inventorySize > 0){
-                //get random number of customers
+                //get random number of customers for the day
                 Random r = new Random();
                 for(int j = 0; j<r.nextInt(regularCustomers.size()); j++){
                     customer = getRandomCustomer(regularCustomers);
@@ -78,9 +76,9 @@ public class Launch{
             }
             obsLedger.finishDay();
         }
+
         //Final tally of money and rentals from simulation
         System.out.println("Simulation Over");
-
         for(RentRecord rec : obsLedger.getRentalRecords()){
             switch (rec.user.getType()) {
                 case "Casual":
@@ -99,6 +97,7 @@ public class Launch{
         System.out.println("\t" + busRentals + " By Business Customers");
         System.out.println("\t" + regRentals + " By Regular Customers");
         System.out.println("TOTAL MONEY MADE: $" + obsLedger.getMoneyMade());
+
     }
 
     public static User getRandomCustomer(List<User> regularCustomers){

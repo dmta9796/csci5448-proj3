@@ -14,11 +14,26 @@ public class ObservableLedger implements Observable{
     private int dayNumber;
     private int moneyMadeToday;
     private int moneyMade;
-    private List<RentRecord> completedRentals;
     private List<AbstractCar> inventory;
     private List<RentRecord> rentalRecords;
     private List<Observer> observers;
     private boolean changed;
+
+    public List<RentRecord> getRentalRecords(){
+        return rentalRecords;
+    }
+    public List<AbstractCar> getInventory(){
+        return inventory;
+    }
+    public int getDayNumber(){
+        return dayNumber;
+    }
+    public int getMoneyMadeToday(){
+        return moneyMadeToday;
+    }
+    public int getMoneyMade(){
+        return moneyMade;
+    }
 
     public ObservableLedger(List<AbstractCar> allCars){
         observers = new ArrayList<Observer>();
@@ -80,7 +95,6 @@ public class ObservableLedger implements Observable{
                 record = new RentRecord(customer, baseCar, decoratedCar, req.duration);
                 rentalRecords.add(record);
                 carsRented.add(decoratedCar);
-                customer.addCurRentedCars(decoratedCar);
                 customer.addCar();
 
                 inventory.remove(baseCar);
@@ -108,25 +122,6 @@ public class ObservableLedger implements Observable{
                 }
             }
         }
-    }
-
-    public List<RentRecord> getRentalRecords(){
-        return rentalRecords;
-    }
-
-    public List<AbstractCar> getInventory(){
-        return inventory;
-    }
-
-    public int getDayNumber(){
-        return dayNumber;
-    }
-
-    public int getMoneyMadeToday(){
-        return moneyMadeToday;
-    }
-    public int getMoneyMade(){
-        return moneyMade;
     }
 
 }
