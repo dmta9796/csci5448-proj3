@@ -7,7 +7,7 @@ Max Schwarz<br/>
 Dmitri Tarasov<br/>
 
 ## Comments
-No special instructions.<br/>
+Launch.java contains main to execute the simulation <br/>
 Developed using IntelliJ IDEA on Java 11.<br/>
 Random behavior is implemented in animals/hippo.py<br/>
 ### Description of program design
