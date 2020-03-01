@@ -7,9 +7,14 @@ Max Schwarz<br/>
 Dmitri Tarasov<br/>
 
 ## Comments
-Please run using python 3.<br/>
+No special instructions.<br/>
+Developed using IntelliJ IDEA on Java 11.<br/>
 Random behavior is implemented in animals/hippo.py<br/>
-Strategy pattern is implemented in wakeup_strategy.py and is responsible for how animals wake up.<br/>
-Observer pattern is specific to zooAnnouncer.py, Subject.py, Observer.py, and is seen/used in the other common files.<br/>
-#### To Run:
-From root directory:<br/> `python Main.py`
+### Description of program design
+Strategy pattern is used to delegate the different rental behaviors of regular, business, and casual customers.<br/>
+Observer pattern is used to monitor and print out the required values from the ledger, such as active rentals, completed rentals, etc. The observer is created without using java's built in observer.<br/>
+A factory is used to create the vehicle inventory and license the cars. RentalBusinessOne is the concrete factory used in the sim. For example, if another store opened up we could make RentalBusinessTwo that has different methods of creating vehicles for the inventory and different methods of licensing them.<br/>
+A decorator pattern is used to add gps, carseats, or satelite radio to the cars.<br/>
+<br/>
+No assumptions outside of those given in the project description were made.
+

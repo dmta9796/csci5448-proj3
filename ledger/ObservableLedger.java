@@ -88,7 +88,9 @@ public class ObservableLedger implements Observable{
 
                 //decorator pattern
                 baseCar = decoratedCar = inventory.get(0);
-                if(req.carSeats){decoratedCar = new ChildSeat(decoratedCar);}
+                for(int i=0 ; i<req.carSeats ; i++){
+                    decoratedCar = new ChildSeat(decoratedCar);
+                }
                 if(req.gps){decoratedCar = new GPS(decoratedCar);}
                 if(req.satRadio){decoratedCar = new Radio(decoratedCar);}
 

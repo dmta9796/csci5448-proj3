@@ -14,7 +14,7 @@ public class LedgerObserver implements Observer{
         System.out.println("Record of Complete Rentals:");
         for(RentRecord rec : this.ledger.getRentalRecords()){
             if(rec.returned){
-                System.out.println("\t\t" + rec.user.getName() + "\t\t" + rec.car.getDescription() + "\t\t" + rec.totalDuration + " Days" + "\t\t" + "$" + rec.car.getCost());
+                System.out.println("\t\t" + rec.user.getName() + "\t\t" + rec.carWithOptions.getDescription() + "\t\t" + rec.totalDuration + " Days" + "\t\t" + "$" + rec.car.getCost());
             }
         }
         System.out.println("Record of Active Rentals:");
