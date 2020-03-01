@@ -9,7 +9,6 @@ Dmitri Tarasov<br/>
 ## Comments
 Launch.java contains main to execute the simulation <br/>
 Developed using IntelliJ IDEA on Java 11.<br/>
-Random behavior is implemented in animals/hippo.py<br/>
 ### Description of program design
 Strategy pattern is used to delegate the different rental behaviors of regular, business, and casual customers.<br/>
 Observer pattern is used to monitor and print out the required values from the ledger, such as active rentals, completed rentals, etc. The observer is created without using java's built in observer.<br/>
