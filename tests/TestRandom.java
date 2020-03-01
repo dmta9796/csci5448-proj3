@@ -6,6 +6,7 @@ import java.util.Random;
 
 public class TestRandom extends Random{
     int sequentialNum = 1;
+    boolean sequentialBool = true;
 
     public TestRandom(){
         super();
@@ -14,5 +15,6 @@ public class TestRandom extends Random{
     public int nextInt(){
         return sequentialNum;
     }
+    public boolean nextBool(){return sequentialBool;}
 
 }
