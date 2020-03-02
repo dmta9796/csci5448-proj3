@@ -22,9 +22,10 @@ public class TestDecorator{
         Economy cheap = new Economy();
         GPS addon1 = new GPS(cheap);
         Radio addon2 = new Radio(addon1);
-        String text = addon2.getDescription();
+        ChildSeat addon3 = new ChildSeat(addon2);
+        String text = addon3.getDescription();
         try {
-            assertEquals(text, "Economy car + GPS + Radio");
+            assertEquals(text, "Economy car + GPS + Radio + Child seat");
             System.out.println("addons descriptions tested successfully");
         } catch(AssertionError e){
             System.out.println("addons descriptions tested in error");

@@ -24,6 +24,9 @@ public class Launch{
         user.testBusinessLength();
         user.testCasualLength();
         user.testRegularLength();
+        user.SimCustomerChoice();
+        user.BaseModelRequest();
+        user.CheckType();
         objects.countCars();
         objects.carTypes();
         decorator.testAddonsDescription();

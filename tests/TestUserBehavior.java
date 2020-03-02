@@ -1,4 +1,5 @@
 package tests;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -9,17 +10,15 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
+import org.mockito.internal.matchers.ArrayEquals;
 import users.*;
+import static org.hamcrest.CoreMatchers.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
 public class TestUserBehavior{
-
-    @Before
-    public void deterministicRandom(){
-        MockitoAnnotations.initMocks(this);
-    }
     @Test
     public void testCasualLength(){
         BuyBehavior action = new Casual();
@@ -66,6 +65,82 @@ public class TestUserBehavior{
             System.out.println("Regular number of requests tested in error");
         }
     }
+    @Test
+    public void SimCustomerChoice(){
+        final BuyBehavior action = Mockito.spy(new Regular());
+        when(action.makeRandom()).thenReturn(new FakeRandom(1));
+
+
+        User user = new User("PickyDanny",action);
+        List<RentRequest> request = user.rentCarReq();
+        List<RentRequest> expected = new ArrayList<RentRequest>();
+        expected.add(new RentRequest(4,1,true,true));
+        expected.add(new RentRequest(4,1,true,true));
+        List<RentRequest> actual = request;
+        try {
+            assertEquals(actual.size(),expected.size());
+            for(int i = 0; i<actual.size();i++) {
+                RentRequest a = actual.get(i);
+                RentRequest b = expected.get(i);
+                assertEquals(a.carSeats, b.carSeats);
+                assertEquals(a.duration, b.duration);
+                assertEquals(a.satRadio, b.satRadio);
+                assertEquals(a.gps, b.gps);
+            }
+
+            System.out.println("request features fields check tested successfully");
+        } catch(AssertionError e){
+            System.out.println("request features fields check tested in error");
+        }
+    }
+    @Test
+    public void BaseModelRequest(){
+        final BuyBehavior action = Mockito.spy(new Regular());
+        when(action.makeRandom()).thenReturn(new FakeRandom(0));
+
+        User user = new User("CheapDanny",action);
+        List<RentRequest> request = user.rentCarReq();
+        List<RentRequest> expected = new ArrayList<RentRequest>();
+        expected.add(new RentRequest(3,0,false,false));
+        List<RentRequest> actual = request;
+        try {
+            assertEquals(actual.size(),expected.size());
+            for(int i = 0; i<actual.size();i++) {
+                RentRequest a = actual.get(i);
+                RentRequest b = expected.get(i);
+                assertEquals(a.carSeats, b.carSeats);
+                assertEquals(a.duration, b.duration);
+                assertEquals(a.satRadio, b.satRadio);
+                assertEquals(a.gps, b.gps);
+            }
+            System.out.println("request base fields check tested successfully");
+        } catch(AssertionError e){
+            System.out.println("request base fields check tested in error");
+        }
+    }
+    @Test
+    public void CheckType(){
+        final BuyBehavior action = Mockito.spy(new Regular());
+        when(action.makeRandom()).thenReturn(new FakeRandom(0));
+
+        User user = new User("CheapDanny",action);
+        List<RentRequest> request = user.rentCarReq();
+        List<RentRequest> expected = new ArrayList<RentRequest>();
+        expected.add(new RentRequest(3,0,false,false));
+        List<RentRequest> actual = request;
+        try {
+            assertEquals(actual.size(),expected.size());
+            for(int i = 0; i<actual.size();i++) {
+                RentRequest a = actual.get(i);
+                RentRequest b = expected.get(i);
+                assertThat(a, instanceOf(RentRequest.class));
+                assertThat(b, instanceOf(RentRequest.class));
+            }
+            System.out.println("request type check tested successfully");
+        } catch(AssertionError e){
+            System.out.println("request type check tested in error");
+        }
+    }
 }
 
 // blog for mocks
@@ -78,6 +153,10 @@ public class TestUserBehavior{
 // https://www.vogella.com/tutorials/Mockito/article.html
 //https://dzone.com/articles/a-guide-to-mocking-with-mockitos
 // https://stackoverflow.com/questions/53110890/how-to-test-a-method-that-uses-random-without-arguments-and-return-value-usi
+
+
+// pesky equality issue between objects.  (ES 6 is alot better with handling the issue without libraries)
+// https://dzone.com/articles/comparing-two-objects-using-assertareequal
 
 //resolve a warning about illegal reflective access
 //
