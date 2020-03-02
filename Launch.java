@@ -3,6 +3,7 @@ import ledger.*;
 import simplefactory.RentalBusiness;
 import simplefactory.RentalBusinessOne;
 import users.*;
+import tests.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +17,21 @@ public class Launch{
     public static int price;
     public static final boolean debugMsgs = false;
 
+    public static void tests(){
+        TestDecorator decorator = new TestDecorator();
+        TestObjectCreation objects = new TestObjectCreation();
+        TestUserBehavior user = new TestUserBehavior();
+        user.testBusinessLength();
+        user.testCasualLength();
+        user.testRegularLength();
+        objects.countCars();
+        objects.carTypes();
+        decorator.testAddonsDescription();
+        decorator.testAddonsPrice();
+    }
+
     public static void main(String[] args) {
+        tests();
         List<User> regularCustomers = new ArrayList<User>();
         int inventorySize;
         User customer;

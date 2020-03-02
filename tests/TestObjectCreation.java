@@ -16,7 +16,12 @@ public class TestObjectCreation {
         items.buildInventory();
         List<AbstractCar> inventory= items.getInventory();
         int size = inventory.size();
-        assertEquals(24,size);
+        try {
+            assertEquals(24,size);
+            System.out.println("number of cars tested successfully");
+        } catch(AssertionError e){
+            System.out.println("number of cars tested in error");
+        }
     }
 
     //check there is two of each type of car.
@@ -42,7 +47,11 @@ public class TestObjectCreation {
         for (int i = 0 ;i < 5;i++) {
             expected.add(true);
         }
-        assertEquals(actual,expected);
-
+        try {
+            assertEquals(actual,expected);
+            System.out.println("list containing each car type tested successfully");
+        } catch(AssertionError e){
+            System.out.println("list containing each car type  tested in error");
+        }
     }
 }

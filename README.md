@@ -9,6 +9,7 @@ Dmitri Tarasov<br/>
 ## Comments
 Launch.java contains main to execute the simulation <br/>
 Developed using IntelliJ IDEA on Java 11.<br/>
+Testing done with Junit and Mockito. <br/>
 ### Description of program design
 Strategy pattern is used to delegate the different rental behaviors of regular, business, and casual customers.<br/>
 Observer pattern is used to monitor and print out the required values from the ledger, such as active rentals, completed rentals, etc. The observer is created without using java's built in observer.<br/>
@@ -16,4 +17,9 @@ A factory is used to create the vehicle inventory and license the cars. simplefa
 A decorator pattern is used to add gps, carseats, or satelite radio to the cars.<br/>
 <br/>
 No assumptions outside of those given in the project description were made.
+
+
+### Testing Framework
+Added a testing for the individual components which would show a display before 
+the actual simulation. 
 

@@ -26,7 +26,12 @@ public class TestUserBehavior{
         User user = new User("casualDanny",action);
         List<RentRequest> request = user.rentCarReq();
         int len = request.size();
-        assertEquals(1,len);
+        try {
+            assertEquals(1,len);
+            System.out.println("Casual number of requests tested successfully");
+        } catch(AssertionError e){
+            System.out.println("Casual number of requests tested in error");
+        }
     }
 
     @Test
@@ -35,7 +40,13 @@ public class TestUserBehavior{
         User user = new User("BusinessDanny",action);
         List<RentRequest> request = user.rentCarReq();
         int len = request.size();
-        assertEquals(3,len);
+
+        try {
+            assertEquals(3,len);
+            System.out.println("Business number of requests tested successfully");
+        } catch(AssertionError e){
+            System.out.println("Business number of requeststested in error");
+        }
     }
 
     @Test
@@ -48,6 +59,12 @@ public class TestUserBehavior{
         List<RentRequest> request = user.rentCarReq();
         int len = request.size();
         assertEquals(1,len);
+        try {
+            assertEquals(1,len);
+            System.out.println("Regular number of requests tested successfully");
+        } catch(AssertionError e){
+            System.out.println("Regular number of requests tested in error");
+        }
     }
 }
 
