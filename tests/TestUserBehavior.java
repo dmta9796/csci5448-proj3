@@ -41,7 +41,7 @@ public class TestUserBehavior{
     @Test
     public void testRegularLength(){
         final BuyBehavior action = Mockito.spy(new Regular());
-        when(action.makeRandom()).thenReturn(new TestRandom());
+        when(action.makeRandom()).thenReturn(new FakeRandom());
 
 
         User user = new User("RegularDanny",action);

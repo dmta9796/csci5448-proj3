@@ -1,3 +1,5 @@
+package simplefactory;
+
 import automobiles.*;
 
 import java.util.Random;

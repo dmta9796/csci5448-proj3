@@ -1,5 +1,7 @@
 import automobiles.*;
 import ledger.*;
+import simplefactory.RentalBusiness;
+import simplefactory.RentalBusinessOne;
 import users.*;
 
 import java.util.ArrayList;

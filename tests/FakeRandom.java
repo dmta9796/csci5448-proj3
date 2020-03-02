@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class TestRandom extends Random{
+public class FakeRandom extends Random{
     int sequentialNum = 1;
     boolean sequentialBool = true;
 
-    public TestRandom(){
+    public FakeRandom(){
 
     }
 
