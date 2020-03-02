@@ -15,10 +15,6 @@ import java.util.List;
 import java.util.Random;
 
 public class TestUserBehavior{
-    @Mock
-    private Random rand;
-    @InjectMocks
-    private TestRandom fakerand;
 
     @Before
     public void deterministicRandom(){
@@ -44,10 +40,10 @@ public class TestUserBehavior{
 
     @Test
     public void testRegularLength(){
-        when(rand.nextInt()).thenReturn(1);
-        when(rand.nextBoolean()).thenReturn(true);
+        final BuyBehavior action = Mockito.spy(new Regular());
+        when(action.makeRandom()).thenReturn(new TestRandom());
 
-        BuyBehavior action = new Regular();
+
         User user = new User("RegularDanny",action);
         List<RentRequest> request = user.rentCarReq();
         int len = request.size();
@@ -64,3 +60,7 @@ public class TestUserBehavior{
 // https://stackoverflow.com/questions/40800467/how-to-test-method-which-uses-random-but-cant-pick-the-same-number-twice
 // https://www.vogella.com/tutorials/Mockito/article.html
 //https://dzone.com/articles/a-guide-to-mocking-with-mockitos
+// https://stackoverflow.com/questions/53110890/how-to-test-a-method-that-uses-random-without-arguments-and-return-value-usi
+
+//resolve a warning about illegal reflective access
+//

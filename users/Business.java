@@ -13,7 +13,7 @@ public class Business implements BuyBehavior{
         boolean satRadio;
 
         List<RentRequest> rentRequests = new ArrayList<RentRequest>();
-        Random random = new Random();
+        Random random = makeRandom();
         for(int i = 0; i< 3; i++) {
             carSeats = random.nextInt(5);
             gps = random.nextBoolean();
@@ -26,5 +26,9 @@ public class Business implements BuyBehavior{
     }
     public String type(){
         return "Business";
+    }
+
+    public Random makeRandom(){
+        return new Random();
     }
 }

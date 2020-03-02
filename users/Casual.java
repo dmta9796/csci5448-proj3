@@ -8,7 +8,7 @@ public class Casual implements BuyBehavior{
 
     public List<RentRequest> createRentReq(){
         List<RentRequest> rentRequests = new ArrayList<RentRequest>();
-        Random random = new Random();
+        Random random = makeRandom();
         int carSeats = random.nextInt(5);
         boolean gps = random.nextBoolean();
         boolean satRadio = random.nextBoolean();
@@ -19,5 +19,9 @@ public class Casual implements BuyBehavior{
 
     public String type(){
         return "Casual";
+    }
+
+    public Random makeRandom(){
+        return new Random();
     }
 }

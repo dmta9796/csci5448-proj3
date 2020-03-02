@@ -9,12 +9,17 @@ public class TestRandom extends Random{
     boolean sequentialBool = true;
 
     public TestRandom(){
-        super();
+
     }
 
     public int nextInt(){
-        return sequentialNum;
+        return 0;
     }
-    public boolean nextBool(){return sequentialBool;}
+    public int nextInt(int bound){
+        return 0;
+    }
+    public boolean nextBoolean(){
+        return true;
+    }
 
 }

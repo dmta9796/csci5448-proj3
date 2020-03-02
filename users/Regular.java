@@ -11,7 +11,7 @@ public class Regular implements BuyBehavior{
         boolean satRadio;
 
         List<RentRequest> rentRequests = new ArrayList<RentRequest>();
-        Random random = new Random();
+        Random random = makeRandom();;
         for(int i = 0; i< random.nextInt(3) + 1; i++) {
             carSeats = random.nextInt(5);
             gps = random.nextBoolean();
@@ -25,6 +25,10 @@ public class Regular implements BuyBehavior{
 
     public String type(){
         return "Regular";
+    }
+
+    public Random makeRandom(){
+        return new Random();
     }
 
 }
